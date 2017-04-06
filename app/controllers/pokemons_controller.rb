@@ -1,5 +1,6 @@
 class PokemonsController < ApplicationController
   before_action :set_pokemon, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /pokemons
   # GET /pokemons.json
@@ -59,6 +60,11 @@ class PokemonsController < ApplicationController
       format.html { redirect_to pokemons_url, notice: 'Pokemon was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def add_pokemon
+    @added = Caught.create(pokemon_id: params[:id], user_id: current_user.id, level: 1)
+    redirect_to user_caughts_path(current_user.id), notice: 'Pokemon was successfully updated.' 
   end
 
   private

@@ -1,0 +1,28 @@
+<h1><%= current_user.name %></h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Pokemon</th>
+      <th>Current Level</th>
+      <th>Level Up</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @caughts.each do |caught| %>
+      <tr>
+        <td><%= Pokemon.find(caught.pokemon_id).name%></td>
+        <td><%= caught.level %></td>
+        <td><%= link_to 'Level Up', lvl_up_user_caught_path(params[:user_id], caught) %>
+        <td><%= link_to 'Show', user_caught_path(params[:user_id], caught.id) %></td>
+        <td><%= link_to 'Edit', edit_user_caught_path(params[:user_id], caught) %></td>
+        <td><%= link_to 'Destroy', user_caught_path(params[:user_id], caught), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', pokemons_path %>

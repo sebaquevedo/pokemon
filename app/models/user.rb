@@ -7,3 +7,5 @@ class User < ApplicationRecord
 	has_many :caughts
 	has_many :pokemons, through: :caughts
 end
+
+

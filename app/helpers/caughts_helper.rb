@@ -1,0 +1,2 @@
+module CaughtsHelper
+end
